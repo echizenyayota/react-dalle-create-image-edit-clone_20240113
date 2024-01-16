@@ -1,8 +1,10 @@
 import { useState } from "react";
+import Modal from "./components/Modal";
 
 const App = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [modalOpen, setModalOpen] = useState(null);
 
   const uploadImage = async (e) => {
     const formData = new FormData();
@@ -31,6 +33,9 @@ const App = () => {
           <input onChange={uploadImage} id="files" accept="image/*" type="file" hidden />
           to edit
         </span>
+        {modleOpen && <div className="overlay">
+          <Modal />
+        </div>}
       </div>
     </div>
   );
