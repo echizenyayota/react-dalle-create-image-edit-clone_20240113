@@ -33,8 +33,11 @@ const App = () => {
           <input onChange={uploadImage} id="files" accept="image/*" type="file" hidden />
           to edit
         </span>
-        {modleOpen && <div className="overlay">
-          <Modal />
+        {modalOpen && <div className="overlay">
+          <Modal 
+            setModalOpen={setModalOpen}
+            setSelectedImage={setSelectedImage}
+          />
         </div>}
       </div>
     </div>
