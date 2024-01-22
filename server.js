@@ -45,6 +45,7 @@ app.post("/upload", (req, res) => {
       return res.status(500).json(err);
     }
     filePath = req.file.path;
+    res.status(200).json({ filePath: req.file.path });
   });
 });
 
@@ -57,6 +58,7 @@ app.post("/editImage", async(req, res) => {
     res.status(200).json(image);
   } catch(error) {
     console.error(error);
+    res.status(500).json({ error: error.message });
   }
 });
 

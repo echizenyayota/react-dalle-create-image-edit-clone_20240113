@@ -1,9 +1,9 @@
-import { useReducer, useState } from "react";
+import { useRef, useState } from "react";
 
-const Modal = ({ setModalOpen, setSelectedImage, selectedImage }) => {
+const Modal = ({ setModalOpen, setSelectedImage, selectedImage, generatedEditImage }) => {
 
   const [error, setError] = useState(null);
-  const ref = useReducer(null);
+  const ref = useRef(null);
 
   const closeModal = () => {
     setModalOpen(null);
@@ -12,7 +12,7 @@ const Modal = ({ setModalOpen, setSelectedImage, selectedImage }) => {
 
   const checkSize = () => {
     if (ref.current.width === 256 && ref.current.height === 256) {
-      // generatedEditImage();
+      generatedEditImage();
     } else {
       setError('Error: Choose 256 * 256')
     }

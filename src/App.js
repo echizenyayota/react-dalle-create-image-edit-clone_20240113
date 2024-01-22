@@ -3,6 +3,8 @@ import Modal from "./components/Modal";
 
 const App = () => {
 
+  const [images, setImages] = useState(null);
+  const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -26,6 +28,28 @@ const App = () => {
 
   }
 
+  const generatedEditImage = async () => {
+    try {
+      const options = {
+        method: "POST",
+        body: JSON.stringify({
+          message: "Make the background in the picture a beach"
+        }),
+        headers: {
+          "Content-type": "application/json"
+        },
+      }
+      const response = await fetch('http://localhost:8000/editImage', options);
+      const data = await response.json();
+      console.log(data);
+      setImages(data.data);
+      setError(null);
+      setModalOpen(false);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="app">
       <div className="upload-image">
@@ -39,6 +63,7 @@ const App = () => {
             setModalOpen={setModalOpen}
             setSelectedImage={setSelectedImage}
             selectedImage={selectedImage}
+            generatedEditImage={generatedEditImage}
           />
         </div>}
       </div>
